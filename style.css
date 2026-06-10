@@ -1,0 +1,453 @@
+/* CSS Variables for Theme Support */
+:root {
+    --bg-color: #f4f5f7;
+    --card-bg: #ffffff;
+    --text-color: #1a1f36;
+    --text-secondary: #4f566b;
+    --display-bg: #f8f9fa;
+    --display-border: #e3e8ee;
+    --btn-bg-num: #f2f3f5;
+    --btn-text-num: #1a1f36;
+    --btn-bg-sci: #e8ecef;
+    --btn-text-sci: #2a3042;
+    --btn-bg-op: #ffe3d3;
+    --btn-text-op: #ff5a00;
+    --btn-bg-eq: #ff5a00;
+    --btn-text-eq: #ffffff;
+    --btn-bg-hover: #e1e4e8;
+    --border-radius: 12px;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    --focus-outline: 3px solid #4a90e2;
+}
+
+/* High Contrast Theme Override */
+.theme-high-contrast {
+    --bg-color: #000000;
+    --card-bg: #000000;
+    --text-color: #ffffff;
+    --text-secondary: #ffff00;
+    --display-bg: #000000;
+    --display-border: #ffffff;
+    --btn-bg-num: #000000;
+    --btn-text-num: #ffffff;
+    --btn-bg-sci: #000000;
+    --btn-text-sci: #00ffff;
+    --btn-bg-op: #000000;
+    --btn-text-op: #ffff00;
+    --btn-bg-eq: #ffffff;
+    --btn-text-eq: #000000;
+    --btn-bg-hover: #333333;
+    --border-radius: 4px;
+    --shadow: none;
+    --focus-outline: 4px solid #ffff00;
+}
+
+/* Base resets & styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.calculator-app {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* App Header Styling */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.controls-group {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--display-border);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: all 0.2s;
+}
+
+.control-btn:hover {
+    filter: brightness(0.95);
+}
+
+.control-btn:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: 2px;
+}
+
+/* Layout container for Sidebar & Calculator */
+.calculator-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    position: relative;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .calculator-layout {
+        grid-template-columns: 1fr;
+        transition: grid-template-columns 0.3s ease;
+    }
+    
+    .calculator-layout.has-history {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
+
+/* Main Calculator Container */
+.calculator-container {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--display-border);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.theme-high-contrast .calculator-container {
+    border: 3px solid #ffffff;
+}
+
+/* Indicators Badge styling */
+.indicators {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.indicator-badge {
+    background-color: var(--btn-bg-sci);
+    color: var(--btn-text-sci);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--display-border);
+}
+
+.theme-high-contrast .indicator-badge {
+    border: 1px solid #ffffff;
+    background: #000;
+    color: #fff;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Display Styling */
+.display-container {
+    background-color: var(--display-bg);
+    border: 1px solid var(--display-border);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.theme-high-contrast .display-container {
+    border: 2px solid #ffffff;
+}
+
+.formula-view {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    min-height: 1.5rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 4px;
+}
+
+.result-view {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: var(--text-color);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.result-view:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: -2px;
+}
+
+/* Mode selectors (Deg/Rad, AC, Backspace) */
+.mode-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.mode-btn {
+    padding: 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--display-border);
+    background-color: var(--btn-bg-sci);
+    color: var(--btn-text-sci);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.theme-high-contrast .mode-btn {
+    border: 2px solid #ffffff;
+}
+
+.mode-btn:hover {
+    filter: brightness(0.9);
+}
+
+.mode-btn:focus-visible {
+    outline: var(--focus-outline);
+}
+
+.btn-danger {
+    background-color: #ff3b30 !important;
+    color: white !important;
+    border: none;
+}
+
+.theme-high-contrast .btn-danger {
+    background-color: #000000 !important;
+    color: #ff3b30 !important;
+    border: 2px solid #ff3b30 !important;
+}
+
+/* Buttons Grid Layout */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* Button Individual Styles */
+.btn {
+    padding: 16px 8px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: -2px;
+}
+
+/* Specific Button Classes */
+.btn-num {
+    background-color: var(--btn-bg-num);
+    color: var(--btn-text-num);
+}
+
+.btn-num:hover {
+    background-color: var(--btn-bg-hover);
+}
+
+.btn-sci {
+    background-color: var(--btn-bg-sci);
+    color: var(--btn-text-sci);
+    font-size: 1rem;
+}
+
+.btn-sci:hover {
+    filter: brightness(0.92);
+}
+
+.btn-op {
+    background-color: var(--btn-bg-op);
+    color: var(--btn-text-op);
+    font-size: 1.3rem;
+}
+
+.btn-op:hover {
+    filter: brightness(0.92);
+}
+
+.btn-mem {
+    background-color: var(--btn-bg-sci);
+    color: var(--btn-text-sci);
+    font-size: 0.85rem;
+    border: 1px dashed var(--display-border);
+}
+
+.btn-mem:hover {
+    filter: brightness(0.92);
+}
+
+.btn-eq {
+    background-color: var(--btn-bg-eq);
+    color: var(--btn-text-eq);
+    grid-column: span 1;
+    font-size: 1.5rem;
+}
+
+.btn-eq:hover {
+    filter: brightness(0.9);
+}
+
+/* High Contrast Button Style Fixes */
+.theme-high-contrast .btn {
+    border: 2px solid #ffffff !important;
+}
+
+.theme-high-contrast .btn:hover {
+    background-color: #333333 !important;
+}
+
+/* History Panel Styling */
+.history-panel {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--display-border);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+.theme-high-contrast .history-panel {
+    border: 3px solid #ffffff;
+}
+
+.calculator-layout.has-history .history-panel {
+    display: flex;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--display-border);
+    padding-bottom: 10px;
+}
+
+.history-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.danger-outline-btn {
+    background: transparent;
+    border: 1px solid #ff3b30;
+    color: #ff3b30;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.danger-outline-btn:hover {
+    background: #ff3b30;
+    color: white;
+}
+
+.theme-high-contrast .danger-outline-btn {
+    border: 2px solid #ff3b30;
+    background: #000;
+    color: #ff3b30;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+.no-history {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.history-item {
+    background: var(--display-bg);
+    border: 1px solid var(--display-border);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: right;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.history-item:hover {
+    border-color: var(--btn-bg-eq);
+}
+
+.history-item:focus-visible {
+    outline: var(--focus-outline);
+}
+
+.history-item-expr {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: monospace;
+    margin-bottom: 4px;
+}
+
+.history-item-res {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    font-family: monospace;
+}

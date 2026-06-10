@@ -1,0 +1,12 @@
+{
+  "name": "scicalc",
+  "version": "1.0.0",
+  "description": "Scientific Calculator with responsive UI, history, accessibility, and high contrast mode",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
